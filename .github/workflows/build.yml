@@ -35,4 +35,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/integra0386/marinara-gaia-worker:latest
-            ghcr.io/integra0386/marinara-gaia-worker:nf4unet1
+            ghcr.io/integra0386/marinara-gaia-worker:flux-nsfw1
