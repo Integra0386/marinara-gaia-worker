@@ -1,16 +1,10 @@
-FROM runpod/worker-comfyui:5.8.6-base
+FROM runpod/worker-comfyui:5.8.6-flux1-dev
 
 USER root
 
-WORKDIR /comfyui/custom_nodes
-
-RUN rm -rf ComfyUI_bitsandbytes_NF4 ComfyUI_bnb_nf4_fp4_Loaders || true \
-    && git clone https://github.com/silveroxides/ComfyUI_bnb_nf4_fp4_Loaders.git
-
-RUN /opt/venv/bin/python -m pip install --no-cache-dir bitsandbytes \
-    && if [ -f /comfyui/custom_nodes/ComfyUI_bnb_nf4_fp4_Loaders/requirements.txt ]; then \
-         /opt/venv/bin/python -m pip install --no-cache-dir \
-         -r /comfyui/custom_nodes/ComfyUI_bnb_nf4_fp4_Loaders/requirements.txt; \
-       fi
+RUN mkdir -p /comfyui/models/loras \
+    && curl -L \
+    "https://huggingface.co/shahtab/FLUXNSFWunlock/resolve/main/aidmaNSFWunlock-FLUX-V0.2.safetensors?download=true" \
+    -o /comfyui/models/loras/aidmaNSFWunlock-FLUX-V0.2.safetensors
 
 WORKDIR /comfyui
