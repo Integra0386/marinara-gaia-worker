@@ -34,5 +34,5 @@ jobs:
           context: .
           push: true
           tags: |
-  ghcr.io/integra0386/marinara-gaia-worker:latest
-  ghcr.io/integra0386/marinara-gaia-worker:nf4fix1
+            ghcr.io/integra0386/marinara-gaia-worker:latest
+            ghcr.io/integra0386/marinara-gaia-worker:nf4fix1
