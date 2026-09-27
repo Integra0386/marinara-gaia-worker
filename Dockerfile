@@ -1,6 +1,14 @@
 FROM runpod/worker-comfyui:5.8.6-base
 
-RUN git clone https://github.com/silveroxides/ComfyUI_bnb_nf4_fp4_Loaders.git \
-    /comfyui/custom_nodes/ComfyUI_bnb_nf4_fp4_Loaders
+USER root
 
-RUN /opt/venv/bin/pip install --no-cache-dir bitsandbytes
+WORKDIR /workspace/ComfyUI/custom_nodes
+
+RUN rm -rf ComfyUI_bitsandbytes_NF4 || true
+RUN rm -rf ComfyUI_bnb_nf4_fp4_Loaders || true
+
+RUN git clone https://github.com/silveroxides/ComfyUI_bnb_nf4_fp4_Loaders.git
+
+RUN /workspace/ComfyUI/venv/bin/pip install --no-cache-dir --upgrade bitsandbytes
+
+WORKDIR /workspace/ComfyUI
